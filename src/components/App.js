@@ -10,14 +10,34 @@ import React from "react";
 import { hot } from "react-hot-loader";
 import PrivateRoute from './PrivateRoute';
 import ProtectedPage from './ProtectedPage';
+import _ from 'lodash';
 
 // This is a class-based component because the current
 // version of hot reloading won't hot reload a stateless
 // component at the top-level.
 
 class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      width: window.innerWidth
+    }
+  }
+
+  updateDimensions = () => {
+    this.setState({ width: window.innerWidth });
+  };
+
+  componentDidMount() {
+    window.addEventListener('resize', _.debounce(() => this.updateDimensions, 100));
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateDimensions);
+  }
+
   render() {
-    const activeStyle = { color: 'blue' };
+    console.log('...width',this.state )
     return (
       <div>
         {/* <div>
@@ -28,9 +48,9 @@ class App extends React.Component {
           <NavLink to="/about" activeStyle={activeStyle}>About</NavLink>
         </div> */}
         <Switch>
-          <Route exact path="/" component={HomePage} history={this.props.history} />
+          <Route exact path="/" component={HomePage} history={this.props.history} width={this.state.width}/>
           <PrivateRoute path='/stories'>
-            <ProtectedPage/>
+            <ProtectedPage width={this.state.width}/>
           </PrivateRoute>
           <Route path="/about" component={AboutPage} />
           <Route component={NotFoundPage} />

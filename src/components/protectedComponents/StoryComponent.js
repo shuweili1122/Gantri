@@ -4,7 +4,7 @@ import StoryCard from './StoryCard';
 
 const StoryComponent = (props) => {
   useEffect(() => {
-    console.log('...adfas', props.data);
+    console.log('...adfas', props.width);
   })
 
   return (
@@ -14,7 +14,7 @@ const StoryComponent = (props) => {
       </div>
       <div className="StoryComponentContainer">
         {props.data && props.data.map((each, idx) => {
-          return <StoryCard headline={each.headline} creator={each.creator} />
+          return <StoryCard headline={each.headline} creator={each.creator} width={props.width}/>
         })}
       </div>
     </div>

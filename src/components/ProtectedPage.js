@@ -13,9 +13,9 @@ const ProtectedPage = (props) => {
     <div className="protectedPage">
       <HeaderComponent/>
       <SkinnyHero />
-      <StoryComponent/>
+      {/* <StoryComponent/> */}
       {Object.keys(storyData.stories).map((keyName, idx) => {
-        return <StoryComponent key={idx} headline={keyName} data={storyData.stories[keyName]}/>
+        return <StoryComponent key={idx} headline={keyName} data={storyData.stories[keyName]} width={props.width}/>
       })}
     </div>
   );

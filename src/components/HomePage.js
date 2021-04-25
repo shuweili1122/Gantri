@@ -11,7 +11,6 @@ const HomePage = (props) => {
   const [showModel, setModel] = useState(false);
 
   useEffect(() => {
-    console.log('setModel...',showModel);
     if (showModel) {
       const body = document.getElementsByTagName('body');
       body[0].classList.add('model');
@@ -24,7 +23,7 @@ const HomePage = (props) => {
   return (
     <div>
       <div className="homePage">
-        <SignUpModel showModel={showModel} setModel={setModel} history={props.history}/>
+        <SignUpModel showModel={showModel} setModel={setModel} history={props.history} width={props.width}/>
         <HeaderComponent setModel={setModel}/>
         <HeroComponent/>
         <Banner/>
