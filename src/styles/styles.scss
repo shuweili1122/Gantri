@@ -102,12 +102,21 @@ td {
       transform: translateY(-50%);
       position: relative;
 
+      @media screen and (max-width: 768px) {
+        width: 100%;
+        height: 100%;
+        align-items: flex-start;
+      }
+
       .signupForm {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-
+        @media screen and (max-width: 768px) {
+          margin-top: 100px;
+        }
+  
         .close {
           position: absolute;
           top: 20px;
@@ -122,6 +131,8 @@ td {
 
           &.error {
             border: 1px solid red;
+            color: red;
+            background: pink
           }
         }
 
@@ -179,6 +190,13 @@ td {
       float: left;
       padding-bottom: 44.77612%;
       margin-right: -100%;
+
+      @media screen and (max-width: 768px) {
+        content: '';
+        float: left;
+        padding-bottom: 120%;
+        margin-right: -100%;
+      }
     }
 
     .heroContainer {
@@ -233,10 +251,24 @@ td {
     margin: auto;
     margin-top: 60px;
 
+    @media screen and (max-width: 768px) {
+      margin-top: 0;
+    }
+
     .sideBySideContainer {
       display: flex;
       flex-direction: row;
       width: 100%;
+
+      @media screen and (max-width: 768px) {
+        flex-direction: column;
+      }
+
+      &.reverse {
+        @media screen and (max-width: 768px) {
+          flex-direction: column-reverse;
+        }
+      }
 
       .leftSide {
         width: 50%;
@@ -246,6 +278,11 @@ td {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        
+        @media screen and (max-width: 768px) {
+          width: 100%;
+          height: 100vw;
+        }
       }
 
       .rightSide {
@@ -256,6 +293,17 @@ td {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+
+        @media screen and (max-width: 768px) {
+          width: 100%;
+          height: 100vw;
+        }
+      }
+
+      .text {
+        @media screen and (max-width: 768px) {
+          height: 50vw;
+        }
       }
 
       .greyOut {
@@ -276,7 +324,7 @@ td {
 
   .footerWrapper {
     display: block;
-    margin: 50px auto;
+    margin: 50px auto 0;
     width: 100%;
     max-width: 1440px;
     height: 350px;
@@ -323,6 +371,63 @@ td {
       .headline {
         color: #f4f4f4;
       }
+    }
+  }
+
+  .StoryComponentWrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-width: 1440px;
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+    margin-top: 50px;
+
+    .headline {
+      margin-bottom: 20px;
+    }
+
+    .StoryComponentContainer {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 100%;
+      justify-content: space-between;
+      
+      @media screen and (max-width: 768px) {
+        display: block;
+      }
+
+      .storyCardWrapper {
+        border: 1px solid #8f8e8b;
+
+        .storyCardContainer {
+          width: 100%;
+          overflow-wrap: break-word;
+          flex-wrap: wrap;
+          display: flex;
+          flex-direction: column;
+          max-width: 300px;
+
+          .greyout {
+            width: 300px;
+            height: 300px;
+            background-color: #8f8e8b;
+          }
+          
+          .headline {
+            margin-left: 20px;
+            margin-top: 20px;
+          }
+
+          .author {
+            margin-left: 20px;
+            margin-bottom: 20px;
+          }
+        }
+      }
+
     }
   }
 }

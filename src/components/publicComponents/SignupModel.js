@@ -10,6 +10,9 @@ const SignUpModel = (props) => {
     
     if (email && password) {
       document.cookie = 'learnSmart';
+      props.setModel(false);
+      const body = document.getElementsByTagName('body');
+      body[0].classList.remove('model'); 
       props.history.push('/stories');
     }
   }

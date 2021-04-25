@@ -11,6 +11,7 @@ const HomePage = (props) => {
   const [showModel, setModel] = useState(false);
 
   useEffect(() => {
+    console.log('setModel...',showModel);
     if (showModel) {
       const body = document.getElementsByTagName('body');
       body[0].classList.add('model');
