@@ -1,16 +1,43 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
+import HeaderComponent from './publicComponents/HeaderComponent';
+import HeroComponent from './publicComponents/HeroComponent';
+import Banner from './publicComponents/Banner';
+import SideBySideComponent from './publicComponents/SideBySideComponent';
+import Footer from './publicComponents/Footer';
+import SignUpModel from './publicComponents/SignupModel';
 
-const HomePage = () => {
+const HomePage = (props) => {
+  const [showModel, setModel] = useState(false);
+
+  useEffect(() => {
+    if (showModel) {
+      const body = document.getElementsByTagName('body');
+      body[0].classList.add('model');
+    } else {
+      const body = document.getElementsByTagName('body');
+      body[0].classList.remove('model'); 
+    }
+  });
+
   return (
     <div>
-      <h1>React Slingshot</h1>
-
-      <h2>Get Started</h2>
-      <ol>
-        <li>Review the <Link to="/fuel-savings">demo app</Link></li>
-        <li>Remove the demo and start coding: npm run remove-demo</li>
-      </ol>
+      <div className="homePage">
+        <SignUpModel showModel={showModel} setModel={setModel} history={props.history}/>
+        <HeaderComponent setModel={setModel}/>
+        <HeroComponent/>
+        <Banner/>
+        <SideBySideComponent headline={"Only the hottest startups."}
+          description={"We hand-select only the hottest startups and our expert copywriters interview and produce every story."}
+          textSide={'left'}/>
+        <SideBySideComponent headline={"Simplest way to read"}
+          description={"Learn from your phone or from your computer, and continue where you left off anytime."}
+          textSide="right"/>
+        <SideBySideComponent headline={"Free. Forever."}
+          description={"We're a non-profit project supported by Silicon Valley's top VCs and startup incubators. You won't have to pay a cent."}
+          textSide="left"/>
+        <Footer/>
+      </div>
     </div>
   );
 };

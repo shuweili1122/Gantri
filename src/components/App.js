@@ -1,5 +1,5 @@
 /* eslint-disable import/no-named-as-default */
-import { NavLink, Route, Switch } from "react-router-dom";
+import { NavLink, Route, Switch, Redirect } from "react-router-dom";
 
 import AboutPage from "./AboutPage";
 import FuelSavingsPage from "./containers/FuelSavingsPage";
@@ -8,6 +8,8 @@ import NotFoundPage from "./NotFoundPage";
 import PropTypes from "prop-types";
 import React from "react";
 import { hot } from "react-hot-loader";
+import PrivateRoute from './PrivateRoute';
+import ProtectedPage from './ProtectedPage';
 
 // This is a class-based component because the current
 // version of hot reloading won't hot reload a stateless
@@ -18,16 +20,18 @@ class App extends React.Component {
     const activeStyle = { color: 'blue' };
     return (
       <div>
-        <div>
+        {/* <div>
           <NavLink exact to="/" activeStyle={activeStyle}>Home</NavLink>
           {' | '}
           <NavLink to="/fuel-savings" activeStyle={activeStyle}>Demo App</NavLink>
           {' | '}
           <NavLink to="/about" activeStyle={activeStyle}>About</NavLink>
-        </div>
+        </div> */}
         <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/fuel-savings" component={FuelSavingsPage} />
+          <Route exact path="/" component={HomePage} history={this.props.history} />
+          <PrivateRoute path='/stories'>
+            <ProtectedPage/>
+          </PrivateRoute>
           <Route path="/about" component={AboutPage} />
           <Route component={NotFoundPage} />
         </Switch>
