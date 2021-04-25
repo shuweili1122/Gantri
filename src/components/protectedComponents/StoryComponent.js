@@ -15,24 +15,36 @@ const StoryComponent = (props) => {
     slidesToScroll: 1
   };
 
-  return (
-    <div className="StoryComponentWrapper">
-      <div className="headline h3">
-        {props.headline}
+  if (props.width > 768) {
+    return (
+      <div className="StoryComponentWrapper">
+        <div className="headline h3">
+          {props.headline}
+        </div>
+        <div className="StoryComponentContainer">
+          {props.data && props.data.map((each, idx) => {
+            return <StoryCard headline={each.headline} creator={each.creator} width={props.width} />
+          })}
+        </div>
       </div>
-      <div className="StoryComponentContainer">
-        {props.data && props.data.map((each, idx) => {
-          if (props.width > 768) {
-            return <StoryCard headline={each.headline} creator={each.creator} width={props.width}/>
-          } else {
-            return (<Slider {...settings}>
-              <StoryCard headline={each.headline} creator={each.creator} width={props.width}/>
-            </Slider>)
-          }
-        })}
+    );
+  } else {
+    return (
+      <div className="StoryComponentWrapper">
+        <div className="headline h3">
+          {props.headline}
+        </div>
+        <div className="StoryComponentContainer">
+          <Slider {...settings}>
+            {props.data && props.data.map((each, idx) => {
+              return <div><StoryCard headline={each.headline} creator={each.creator} width={props.width} /></div>
+            })}
+          </Slider>
+        </div>
       </div>
-    </div>
-  );
+    );
+
+  }
 };
 
 export default StoryComponent;

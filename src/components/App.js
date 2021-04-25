@@ -29,7 +29,7 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    window.addEventListener('resize', _.debounce(() => this.updateDimensions, 100));
+    window.addEventListener('resize', _.debounce(() => this.updateDimensions(), 100));
   }
 
   componentWillUnmount() {
